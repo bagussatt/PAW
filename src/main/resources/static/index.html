@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <style>
+        body {
+            background-color: #333; /* Dark background color */
+            color: #fff; /* Light text color */
+        }
+
+        input, button {
+            background-color: #555; /* Darker background color for inputs and buttons */
+            color: #fff; /* Light text color for inputs and buttons */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            color: #fff; /* Light text color for table text */
+        }
+
+        th, td {
+            border: 1px solid #ddd; /* Border color for table cells */
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #444; /* Darker background color for table header */
+            color: #fff; /* Light text color for table header text */
+        }
+
+        hr {
+            border: 1px solid #555; /* Border color for HR */
+        }
+
+        #view {
+            margin-top: 20px;
+        }
+    </style>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script>
+            function getData(){
+                $.ajax({
+                    url: 'http://localhost:8080/readAll',
+                    method: 'GET',
+                    success: function (result) {
+                        var table = "<table border='1'><tr><th>id</th><th>nama</th><th>alamat</th><th>berat</th><th>harga</th></tr>";
+                        for (var i = 0; i < result.length; i++) {
+                             table += "<tr><td>" + result[i].id + "</td><td>" + result[i].nama + "</td><td>" + result[i].alamat + "</td><td>" + result[i].berat + "</td><td>" + result[i].harga + "</td></tr>"; 
+                       }
+                       table += "</table>";
+                       document.getElementById("view").innerHTML =  table;
+                       console.log(result);
+                   }
+                   
+                });
+                
+                
+            }
+            function postData(){
+                var id = document.getElementById("id").value;
+                var nama = document.getElementById("nama").value;
+                var alamat = document.getElementById("alamat").value;
+                var berat = document.getElementById("berat").value;
+                var harga = document.getElementById("harga").value;
+                
+                newData={
+                  id: id,
+                  nama: nama,
+                  alamat: alamat,
+                  berat: berat,
+                  harga: harga,
+                };
+                
+                $.ajax({
+                    url: "http://localhost:8080/create",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(newData),
+                    success: function(result){
+                        alert ("Data Saved");
+                        console.log(result);
+                    },
+                    error: function(error){
+                        console.error();
+                    }
+                });
+            }
+            
+            function putData(){
+                var id = document.getElementById("id").value;
+                var nama = document.getElementById("nama").value;
+                var alamat = document.getElementById("alamat").value;
+                var berat = document.getElementById("berat").value;
+                var harga = document.getElementById("harga").value;
+                
+                newData={
+                  id: id,
+                  nama: nama,
+                  alamat: alamat,
+                  berat: berat,
+                  harga: harga,
+                };
+                
+    $.ajax({
+        url: "http://localhost:8080/update/" + id,
+        method: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify(updatedData),
+        success: function(result){
+            alert ("Data Updated");
+            console.log(result);
+        },
+        error: function(error){
+            console.error();
+        }
+    });
+}
+            
+            function deltData(){
+                var id = document.getElementById("id").value;
+                
+                $.ajax({
+                    url: 'http://localhost:8080/delete/'+id,
+                    method: "DELETE",
+                    success: function(result){
+                        alert("Data Deleted");
+                        console.log(result);
+                    },
+                    error: function(error){
+                        console.error();
+                    }
+                });
+            }
+            
+        
+        </script>
+            
+    </head>
+    <body>
+        <div>Web Service A</div>
+        <input type ="text" id="id">
+        <input type ="text" id="nama">
+        <input type ="text" id="alamat">
+        <input type ="text" id="berat"><!-- comment -->
+        <input type ="text" id="harga">
+        <hr>
+        <button onclick="postData()">Create</button>
+        <button onclick="getData()">Read</button>
+        <button onclick="putData()">Update</button>
+        <button onclick="deltData()">Delete</button>
+        <div id="view"></div>
+    </body>
+</html>

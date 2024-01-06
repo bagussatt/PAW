@@ -8,9 +8,7 @@
     <style>
         body {
             background-color: #3498db;
-            /* Light blue background color */
             color: #fff;
-            /* Light text color */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
@@ -25,41 +23,53 @@
             margin-bottom: 20px;
         }
 
+        form {
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
         input,
         button {
-            background-color: #fff;
-            /* White background color for inputs and buttons */
-            color: #333;
-            /* Dark text color for inputs and buttons */
-            margin: 10px 5px;
-            padding: 12px;
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+            padding: 10px;
             border: none;
             border-radius: 4px;
-            width: 100%;
             box-sizing: border-box;
         }
 
         button {
             cursor: pointer;
             background-color: #4caf50;
-            /* Green button color */
             color: #fff;
-            /* White text color for the button */
+            margin-top: 10px;
         }
 
         button:hover {
             background-color: #45a049;
-            /* Darker green on hover */
-        }
-
-        #createForm {
-            width: 80%;
-            /* Adjust the width as needed */
-            margin-top: 20px;
         }
 
         #view {
             margin-top: 20px;
+        }
+
+        a {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+            color: white;
+        }
+
+        a button {
+            padding: 5px;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -96,13 +106,14 @@
                 }
             });
         }
-
-
     </script>
 </head>
 
 <body>
-    <h1>Masukkan Orderan Anda di Laundry Johny</h1>
+    <a href="index.html">
+        <button>&#8592</button>
+    </a>
+    <h1>Masukkan Orderan Anda di Laundry Jonny</h1>
     <form id="createForm">
         <label for="id">ID:</label>
         <input type="text" id="id" required>

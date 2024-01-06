@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Laundry Jonny - Pemesanan</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-          body {
-            background-color: #3498db; /* Light blue background color */
-            color: #fff; /* Light text color */
+        body {
+            background-color: #3498db;
+            /* Light blue background color */
+            color: #fff;
+            /* Light text color */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
@@ -22,9 +25,12 @@
             margin-bottom: 20px;
         }
 
-        input, button {
-            background-color: #fff; /* White background color for inputs and buttons */
-            color: #333; /* Dark text color for inputs and buttons */
+        input,
+        button {
+            background-color: #fff;
+            /* White background color for inputs and buttons */
+            color: #333;
+            /* Dark text color for inputs and buttons */
             margin: 10px 5px;
             padding: 12px;
             border: none;
@@ -35,16 +41,20 @@
 
         button {
             cursor: pointer;
-            background-color: #4caf50; /* Green button color */
-            color: #fff; /* White text color for the button */
+            background-color: #4caf50;
+            /* Green button color */
+            color: #fff;
+            /* White text color for the button */
         }
 
         button:hover {
-            background-color: #45a049; /* Darker green on hover */
+            background-color: #45a049;
+            /* Darker green on hover */
         }
 
         #createForm {
-            width: 80%; /* Adjust the width as needed */
+            width: 80%;
+            /* Adjust the width as needed */
             margin-top: 20px;
         }
 
@@ -53,8 +63,8 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function postData() {
             var id = document.getElementById("id").value;
@@ -64,7 +74,7 @@
             var harga = document.getElementById("harga").value;
 
             var newData = {
-                id : id,
+                id: id,
                 nama: nama,
                 alamat: alamat,
                 berat: berat,
@@ -76,24 +86,25 @@
                 method: "POST",
                 contentType: "application/json",
                 data: JSON.stringify(newData),
-                success: function(result) {
+                success: function (result) {
                     alert("Data Saved: " + result);
                     console.log(result);
                 },
-                error: function(error) {
+                error: function (error) {
                     alert("Failed to create data: " + error.responseText);
                     console.error(error);
                 }
             });
         }
-        
-        
+
+
     </script>
 </head>
+
 <body>
-    <h1>Masukkan Orderan Anda di Laundry Jonny</h1>
+    <h1>Masukkan Orderan Anda di Laundry Johny</h1>
     <form id="createForm">
-         <label for="id">ID:</label>
+        <label for="id">ID:</label>
         <input type="text" id="id" required>
         <label for="nama">Nama:</label>
         <input type="text" id="nama" required>
@@ -109,4 +120,5 @@
     </form>
     <div id="view"></div>
 </body>
+
 </html>

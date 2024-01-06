@@ -5,6 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        .button-container {
+    display: flex;
+    }
+
+/* Optional: Style for the buttons */
+.button-container button {
+    padding: 10px;
+    margin: 5px;
+    /* Add any other styling you prefer */
+    }
+
         body {
             background-color: #fff; /* White background color */
             color: #333; /* Dark text color */
@@ -67,7 +78,7 @@
                 <th>ID</th>
                 <th>Nama</th>
                 <th>Alamat</th>
-                <th>Berat (kg)</th>
+                <th>Berat Pakaian(kg)</th>
                 <th>Harga (IDR)</th>
             </tr>
         </thead>
@@ -76,9 +87,12 @@
         </tbody>
     </table>
 
-    <button id="backButton" onclick="window.location.href = 'order.html'">Kembali ke Pemesanan</button>
-    <button id="backButton" onclick="window.location.href = 'editorder.html'">Edit Order</button>
-    <button id="backButton" onclick="window.location.href = 'delete.html'">Hapus Order</button>
+    <div class="button-container">
+        <button id="backButton1" onclick="window.location.href = 'order.html'">Buat Pemesanan</button>
+        <button id="backButton2" onclick="window.location.href = 'editorder.html'">Edit Order</button>
+        <button id="backButton3" onclick="window.location.href = 'delete.html'">Hapus Order</button>
+    </div>
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="

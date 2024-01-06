@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Laundry Jonny - Edit Pemesanan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Add your styles here if needed */
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function putData() {
+            // Get data from the input fields
+            var id = document.getElementById("id").value;
+            var nama = document.getElementById("nama").value;
+            var alamat = document.getElementById("alamat").value;
+            var berat = document.getElementById("berat").value;
+            var harga = document.getElementById("harga").value;
+
+            // Create an object with the updated data
+            var updatedData = {
+                id: id,
+                nama: nama,
+                alamat: alamat,
+                berat: berat,
+                harga: harga
+            };
+
+            // Make an AJAX request to the server to update data
+            $.ajax({
+                // Specify the URL for the PUT request, including the id
+                url: 'http://localhost:8080/order.html/update/' + id,
+                method: "PUT", // Use the PUT HTTP method
+                contentType: "application/json",
+                data: JSON.stringify(updatedData),
+                success: function(result) {
+                    // If the request is successful, show an alert and log the result
+                    alert("Data Updated Successfully");
+                    console.log(result);
+                },
+                error: function(error) {
+                    // If there's an error, show an alert with the error message and log the error
+                    alert("Failed to update data: " + error.responseText);
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Edit Orderan di Laundry Jonny</h1>
+    <form id="editForm">
+        <!-- Remove the readonly attribute from the ID input field -->
+        <label for="id">ID:</label>
+        <input type="text" id="id" required>
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" required>
+        <label for="alamat">Alamat:</label>
+        <input type="text" id="alamat" required>
+        <label for="berat">Berat (kg):</label>
+        <input type="text" id="berat" required>
+        <label for="harga">Harga (IDR):</label>
+        <input type="text" id="harga" required>
+        <button type="button" onclick="putData()">Simpan Perubahan</button>
+        <button id="backButton" onclick="window.location.href = 'histori.html'">Histori Order</button>   
+    </form>
+    <div id="view"></div>
+</body>
+</html>

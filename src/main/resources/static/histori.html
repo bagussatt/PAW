@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Laundry Jonny - Histori Pemesanan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #fff; /* White background color */
+            color: #333; /* Dark text color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4caf50; /* Green background color for table header */
+            color: #fff; /* White text color for table header text */
+        }
+
+        tr:hover {
+            background-color: #f5f5f5; /* Light gray background on hover */
+        }
+
+        #backButton {
+            background-color: #3498db; /* Light blue background color */
+            color: #fff; /* White text color */
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #backButton:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Histori Pemesanan Laundry Jonny</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Berat (kg)</th>
+                <th>Harga (IDR)</th>
+            </tr>
+        </thead>
+        <tbody id="orderHistoryTableBody">
+            <!-- Order history rows will be added here dynamically -->
+        </tbody>
+    </table>
+
+    <button id="backButton" onclick="window.location.href = 'order.html'">Kembali ke Pemesanan</button>
+    <button id="backButton" onclick="window.location.href = 'editorder.html'">Edit Order</button>
+    <button id="backButton" onclick="window.location.href = 'delete.html'">Hapus Order</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Function to fetch and populate order history
+        function getAndPopulateOrderHistory() {
+            $.ajax({
+                url: 'http://localhost:8080/order.html/readAll',
+                method: 'GET',
+                success: function (result) {
+                    var tableBody = $('#orderHistoryTableBody');
+                    tableBody.empty(); // Clear existing rows
+
+                    for (var i = 0; i < result.length; i++) {
+                        var order = result[i];
+                        var row = '<tr><td>' + order.id + '</td><td>' + order.nama + '</td><td>' +
+                                  order.alamat + '</td><td>' + order.berat + '</td><td>' +
+                                  order.harga + '</td></tr>';
+                        tableBody.append(row);
+                    }
+
+                    console.log(result);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        // Call the function on page load
+        $(document).ready(function() {
+            getAndPopulateOrderHistory();
+        });
+    </script>
+</body>
+</html>

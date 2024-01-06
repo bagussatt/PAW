@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Laundry Jonny - Pemesanan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+          body {
+            background-color: #3498db; /* Light blue background color */
+            color: #fff; /* Light text color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            background-color: #fff; /* White background color for inputs and buttons */
+            color: #333; /* Dark text color for inputs and buttons */
+            margin: 10px 5px;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #4caf50; /* Green button color */
+            color: #fff; /* White text color for the button */
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        #createForm {
+            width: 80%; /* Adjust the width as needed */
+            margin-top: 20px;
+        }
+
+        #view {
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function postData() {
+            var id = document.getElementById("id").value;
+            var nama = document.getElementById("nama").value;
+            var alamat = document.getElementById("alamat").value;
+            var berat = document.getElementById("berat").value;
+            var harga = document.getElementById("harga").value;
+
+            var newData = {
+                id : id,
+                nama: nama,
+                alamat: alamat,
+                berat: berat,
+                harga: harga
+            };
+
+            $.ajax({
+                url: "http://localhost:8080/order.html/create",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(newData),
+                success: function(result) {
+                    alert("Data Saved: " + result);
+                    console.log(result);
+                },
+                error: function(error) {
+                    alert("Failed to create data: " + error.responseText);
+                    console.error(error);
+                }
+            });
+        }
+        
+        
+    </script>
+</head>
+<body>
+    <h1>Masukkan Orderan Anda di Laundry Jonny</h1>
+    <form id="createForm">
+         <label for="id">ID:</label>
+        <input type="text" id="id" required>
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" required>
+        <label for="alamat">Alamat:</label>
+        <input type="text" id="alamat" required>
+        <label for="berat">Berat (kg):</label>
+        <input type="text" id="berat" required>
+        <label for="harga">Harga (IDR):</label>
+        <input type="text" id="harga" required>
+        <button type="button" onclick="postData()">Pesan Sekarang</button>
+        <button id="backButton" onclick="window.location.href = 'histori.html'">Lihat Histori Order</button>
+        <button id="backButton" onclick="window.location.href = 'editorder.html'">Edit Order</button>
+    </form>
+    <div id="view"></div>
+</body>
+</html>

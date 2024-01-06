@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author victus
  */
 @RestController
+@RequestMapping("/order.html")
 public class MyController {
     
     PembeliJpaController pbl = new PembeliJpaController();

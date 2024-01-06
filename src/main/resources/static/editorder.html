@@ -100,6 +100,11 @@
                 }
             });
         }
+        function updateHarga() {
+            var berat = document.getElementById("berat").value;
+            var harga = berat * 9000;
+            document.getElementById("harga").value = harga;
+        }
     </script>
 </head>
 
@@ -113,9 +118,9 @@
         <label for="alamat">Alamat:</label>
         <input type="text" id="alamat" required>
         <label for="berat">Berat (kg):</label>
-        <input type="text" id="berat" required>
+        <input type="text" id="berat" required oninput="updateHarga()">
         <label for="harga">Harga (IDR):</label>
-        <input type="text" id="harga" required>
+        <input type="text" id="harga" required readonly>
         <button type="button" onclick="putData()">Simpan Perubahan</button>
         <button id="backButton" onclick="window.location.href = 'histori.html'">Histori Order</button>
     </form>
